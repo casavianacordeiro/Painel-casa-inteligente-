@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel Inteligente</title>
+  <style>
+    body { background-color: #1c1c1c; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    .status { font-size: 16px; margin-bottom: 30px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .botao {
+      background-color: #333; border: none; border-radius: 16px; padding: 20px;
+      font-size: 16px; color: white; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center;
+      transition: 0.3s ease;
+    }
+    .botao:hover { background-color: #555; }
+    .icon { font-size: 32px; margin-bottom: 10px; }
+    .comando { background: #292929; padding: 15px; border-radius: 12px; margin-top: 40px; }
+  </style>
+  <script>
+    function atualizarHora() {
+      const agora = new Date();
+      const horas = agora.getHours().toString().padStart(2, '0');
+      const minutos = agora.getMinutes().toString().padStart(2, '0');
+      document.getElementById('hora').textContent = horas + ':' + minutos;
+    }
+    setInterval(atualizarHora, 1000);
+    window.onload = atualizarHora;
+  </script>
+</head>
+<body>
+  <h1>Painel de Controlo</h1>
+  <div class="status">
+    <strong>Hora:</strong> <span id="hora">--:--</span> | <strong>Humidade:</strong> 52%
+  </div>
+
+  <div class="grid">
+    <button class="botao" onclick="window.open('https://open.spotify.com')"><div class="icon">🎵</div>Música</button>
+    <button class="botao" onclick="alert('Ligar luz da sala')"><div class="icon">💡</div>Luz Sala</button>
+    <button class="botao" onclick="alert('Ligar luz do pátio')"><div class="icon">🌙</div>Luz Pátio</button>
+    <button class="botao" onclick="alert('Ligar ar condicionado')"><div class="icon">❄️</div>AC</button>
+    <button class="botao" onclick="alert('Abrir portão')"><div class="icon">🚪</div>Portão</button>
+    <button class="botao" onclick="alert('Ver Câmaras')"><div class="icon">🎥</div>Câmaras</button>
+    <button class="botao" onclick="alert('Ativar desumidificador')"><div class="icon">💨</div>Desumidificador</button>
+    <button class="botao" onclick="alert('Ver energia')"><div class="icon">⚡</div>Consumo</button>
+<button class="botao" onclick="window.location.href='market://details?id=com.xiaomi.smarthome'"><div class="icon">🏠</div>Xiaomi Home</button>
+  </div>
+
+  <div class="comando">
+    Último comando de voz reconhecido: <strong>Nenhum</strong>
+  </div>
+</body>
+</html>
